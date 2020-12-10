@@ -31,6 +31,17 @@ body {
   padding: 0;
 }
 
+h5 {
+  font-size: 12px;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 14px;
+  text-align: center;
+  color: #e1eaee;
+}
+
 /* BACKGROUND WHILE CODING */
 .app_frame {
   position: absolute;
@@ -92,6 +103,58 @@ h2 {
 .section_2 {
   height: 296px;
   width: 856px;
+}
+
+/* TITLES  */
+.titles {
+  width: 856px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  text-align: center;
+}
+
+.titles .volT {
+  width: 110px;
+}
+
+.titles .four_drums {
+  width: 428px;
+}
+
+.four_drums .drum_title {
+  width: 98.5%;
+}
+
+.titles .four_drums .drum_title {
+  display: flex;
+  flex-direction: row;
+}
+
+.titles .four_drums h5 {
+  width: 107px;
+  color: #dca310;
+}
+
+.titles .hhT {
+  width: 198px;
+}
+
+.titles .cT {
+  width: 99px;
+}
+
+.drum_title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #dca310;
+  height: 35px;
+  width: 98.5%;
+  background: rgba(0, 0, 0, 0.5);
+  border: 3px solid rgba(0, 0, 0, 0.3);
+  border-radius: 3px;
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.36);
 }
 
 /* SECTION - 3 */
