@@ -114,7 +114,8 @@ h2 {
   text-align: center;
 }
 
-.titles .volT {
+.titles .volT,
+#volume_tempo .each_drum {
   width: 110px;
 }
 
@@ -151,10 +152,136 @@ h2 {
   color: #dca310;
   height: 35px;
   width: 98.5%;
+  margin-bottom: 13px;
   background: rgba(0, 0, 0, 0.5);
   border: 3px solid rgba(0, 0, 0, 0.3);
   border-radius: 3px;
   box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.36);
+}
+
+/* DRUMS  */
+/* VOLUME GAIN PAN  */
+.drum_wrapper {
+  width: 856px;
+  height: 246px;
+  display: flex;
+  flex-direction: row;
+}
+
+.flexi {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  height: 246px;
+}
+
+.each_drum {
+  height: 205px;
+}
+
+#volume_tempo {
+  border-right: 3px solid #a1a9ac;
+}
+
+.gain {
+  transform: rotate(-90deg);
+}
+
+.input_background {
+  position: relative;
+  background: #000000;
+  box-shadow: inset -1px -1px 0px rgba(236, 231, 212, 0.63);
+  border-radius: 14px;
+}
+
+/* VOLUME  */
+.volume_background {
+  background: url('./images/volume_fader_background.svg') no-repeat;
+  height: 126px;
+  border-bottom: 3px solid #a1a9ac;
+}
+
+.volume_background .input_background {
+  height: 104px;
+  top: 2px;
+  left: 47px;
+  bottom: 388px;
+  width: 9px;
+}
+
+.volume_background .slider_thumb {
+  background-image: url('./images/volume_fader.svg');
+  width: 27px;
+  height: 24px;
+  position: absolute;
+  top: 40px;
+  left: -9px;
+  cursor: pointer;
+}
+
+.volume_background .input_background input {
+  position: absolute;
+  top: 44px;
+  left: -54px;
+  width: 116px;
+
+  opacity: 0.2;
+}
+
+/* TEMPO  */
+.tempoD {
+  height: 123px;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  justify-content: space-evenly;
+}
+
+.digiScreen {
+  font-family: 'Roboto Mono', monospace;
+  color: red;
+  font-size: 15px;
+  width: 92px;
+  height: 25px;
+  background: #000000;
+  border: 2px solid #000000;
+  margin-left: 3px;
+}
+
+.tempoD .input_background {
+  height: 9px;
+  width: 93px;
+  margin-left: 3px;
+}
+
+.tempoD .input_background input {
+  position: absolute;
+  left: 0;
+  width: 93px;
+  height: 9px;
+  opacity: 0.5;
+}
+
+.tempoD .input_background .slider_thumb {
+  background-image: url('./images/tempo_fader.svg');
+  width: 15px;
+  height: 27px;
+  position: absolute;
+  top: -9px;
+  left: 39px;
+  cursor: pointer;
+}
+
+.tempoD h5 {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  line-height: 13.63px;
+  font-family: 'Roboto', sans-serif;
+  color: #dca310;
+  text-align: center;
+  margin-right: 10px;
 }
 
 /* SECTION - 3 */
