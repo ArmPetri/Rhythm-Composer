@@ -119,20 +119,28 @@ h2 {
   width: 110px;
 }
 
-.titles .four_drums {
+.titles .four_drums,
+.four_drums {
   width: 428px;
+}
+
+.four_drums_container {
+  height: 100%;
+  margin-right: 2px;
 }
 
 .four_drums .drum_title {
   width: 98.5%;
 }
 
-.titles .four_drums .drum_title {
+.titles .four_drums .drum_title,
+.four_drums_container .four_drums {
   display: flex;
   flex-direction: row;
 }
 
-.titles .four_drums h5 {
+.titles .four_drums h5,
+.four_drums_container .four_drums .each_drum {
   width: 107px;
   color: #dca310;
 }
@@ -180,12 +188,18 @@ h2 {
   height: 205px;
 }
 
-#volume_tempo {
+#volume_tempo,
+.four_drums .each_drum {
   border-right: 3px solid #a1a9ac;
+}
+
+#h_tom .each_drum {
+  border-right: none;
 }
 
 .gain {
   transform: rotate(-90deg);
+  position: absolute;
 }
 
 .input_background {
@@ -225,7 +239,6 @@ h2 {
   top: 44px;
   left: -54px;
   width: 116px;
-
   opacity: 0.2;
 }
 
@@ -282,6 +295,73 @@ h2 {
   color: #dca310;
   text-align: center;
   margin-right: 10px;
+}
+
+/* FOUR DRUMS  */
+.four_drums .each_drum {
+  height: 203px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 14px;
+  padding-bottom: 14px;
+}
+
+/* DRUM GAIN & PAN INPUTS  */
+.gain_thumb {
+  background-image: url('./images/gain_thumb.svg');
+  position: absolute;
+}
+
+.pan_thumb {
+  background-image: url('./images/pan_thumb.svg');
+  position: absolute;
+  border-radius: 50%;
+  box-shadow: 2px 0px 5px rgba(243, 236, 207, 0.3);
+}
+
+/* FOUR DRUMS  */
+.four_drums .input_background {
+  height: 67px;
+  width: 9px;
+}
+
+.four_drums_container .gain {
+  top: 28px;
+  left: -29px;
+  width: 67px;
+  height: 9px;
+  opacity: 0.3;
+}
+
+.four_drums_container .gain_thumb {
+  height: 14px;
+  width: 27px;
+
+  top: 24px;
+  left: -9px;
+}
+
+.four_drums_container .input_background:last-child {
+  height: 9px;
+  width: 46px;
+  z-index: 0;
+}
+
+.four_drums_container .pan {
+  position: absolute;
+  width: 46px;
+  height: 9px;
+  opacity: 0.3;
+}
+
+.four_drums_container .pan_thumb {
+  height: 18.04px;
+  width: 18.04px;
+  top: -5px;
+  left: 14px;
+  opacity: 0.3;
 }
 
 /* SECTION - 3 */
