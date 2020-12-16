@@ -145,11 +145,13 @@ h2 {
   color: #dca310;
 }
 
-.titles .hhT {
+.titles .hhT,
+.hi_hat .flexi {
   width: 198px;
 }
 
-.titles .cT {
+.titles .cT,
+.close_open .each_drum {
   width: 99px;
 }
 
@@ -195,6 +197,11 @@ h2 {
 
 #h_tom .each_drum {
   border-right: none;
+}
+
+.close_open {
+  display: flex;
+  flex-direction: row;
 }
 
 .gain {
@@ -362,6 +369,150 @@ h2 {
   top: -5px;
   left: 14px;
   opacity: 0.3;
+}
+
+/* SELECT DRUM BUTTONS  */
+.select {
+  position: relative;
+
+  background: #000000;
+  border: none;
+  border-radius: 5px;
+  justify-content: space-between;
+  align-content: center;
+  align-self: center;
+  box-shadow: inset -1px -1px 0px rgba(236, 231, 212, 0.63);
+}
+
+.select:focus {
+  outline: none;
+}
+
+.select:active {
+  box-shadow: inset -2px -2px 3px rgba(255, 255, 255, 0.6),
+    inset 2px 2px 3px rgba(0, 0, 0, 0.6);
+}
+
+.select .select_button {
+  background: rgba(58, 54, 54, 0.79);
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.36);
+  border-radius: 3px;
+  position: absolute;
+}
+
+.select .btn_light {
+  background: #c4c4c4;
+  box-shadow: 0px 0px 0px 1px rgba(100, 102, 102, 0.3),
+    inset 0px 1px 2px #fff1ba;
+  margin: auto;
+}
+
+.four_drums_container .select {
+  width: 100px;
+  height: 25.26px;
+}
+
+.four_drums_container .select .select_button {
+  width: 95.74px;
+  height: 21px;
+  top: 1%;
+  left: 2%;
+}
+
+.four_drums_container .select .btn_light {
+  height: 4px;
+  width: 23.7px;
+  margin-top: 9px;
+}
+
+/* CYMBALS */
+/* HH  */
+.hi_hat .close_open .input_background {
+  height: 50px;
+  width: 9px;
+}
+
+.hi_hat .gain {
+  top: 20px;
+  left: -21px;
+  height: 9px;
+  width: 50px;
+  opacity: 0.3;
+}
+
+.hi_hat .gain_thumb {
+  height: 14px;
+  width: 25px;
+  top: 16px;
+  left: -9px;
+}
+
+.hi_hat .close_open .input_background:last-of-type {
+  width: 43px;
+  height: 8px;
+}
+
+.hi_hat .pan {
+  position: absolute;
+  width: 43px;
+  height: 8px;
+  opacity: 0.3;
+}
+
+.hi_hat .pan_thumb {
+  width: 16.95px;
+  height: 16.95px;
+  top: -4px;
+  left: 14px;
+  opacity: 0.3;
+}
+
+.hi_hat {
+  margin-right: 2px;
+}
+
+.hi_hat .each_drum {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.hi_hat {
+  border: 3px solid #a1a9ac;
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.36);
+}
+
+.hh_titles {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  height: 32px;
+  width: 100%;
+  border-bottom: 3px solid #a1a9ac;
+}
+
+.hh_titles h5 {
+  flex-grow: 1;
+}
+
+.hi_hat .select {
+  width: 88.69px;
+  height: 23.73px;
+}
+
+.hi_hat .select .select_button {
+  width: 85px;
+  height: 20px;
+  top: 3%;
+  left: 1%;
+}
+
+.hi_hat .select .btn_light {
+  height: 3px;
+  width: 21px;
+  margin-top: 8px;
 }
 
 /* SECTION - 3 */
