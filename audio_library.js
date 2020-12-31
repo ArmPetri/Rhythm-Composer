@@ -24,5 +24,9 @@ function audioFileLoader(fileDirectory) {
     playSound.start(audioContext.currentTime);
   };
 
+  soundObj.stop = function (time) {
+    playSound.stop(audioContext.currentTime + time || audioContext.currentTime);
+  };
+
   return soundObj;
 }
