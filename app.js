@@ -70,6 +70,34 @@ window.addEventListener('DOMContentLoaded', (event) => {
     }
   }
 
+  function sequenceGridToggler(drum, arr) {
+    let eachDrum = document.getElementById(drum);
+    let allPads = eachDrum.querySelectorAll('.pad_light');
+    let arrayo = Array.from(allPads);
+
+    for (let i = 0; i < arrayo.length; i++) {
+      if (arr.indexOf(arrayo.indexOf(arrayo[i]) + 1) > -1) {
+        arrayo[i].classList.add('active');
+      }
+
+      allPads[i].parentElement.addEventListener('mousedown', function () {
+        let gridIndexValue = arrayo.indexOf(allPads[i]);
+        let offset = gridIndexValue + 1;
+        let index = arr.indexOf(offset);
+
+        if (index > -1) {
+          arr.splice(index, 1);
+          arrayo[i].classList.remove('active');
+        } else {
+          arr.push(offset);
+          arrayo[i].classList.add('active');
+        }
+      });
+    }
+  }
+
+  sequenceGridToggler('bassDrum', bassDrumTrack);
+
   let playButton = document.querySelector('.start_stop');
   playButton.addEventListener('click', function () {
     play();
