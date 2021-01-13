@@ -16,12 +16,12 @@ window.addEventListener('DOMContentLoaded', (event) => {
     cymbal = audioFileLoader('sounds/cymbal.mp3');
 
   let bassDrumTrack = [1, 5, 9, 13],
-    snareTrack = [5, 13],
-    lowTomTrack = [],
-    highTomTrack = [],
-    closedHatTrack = [],
-    openHatTrack = [],
-    cymbalTrack = [];
+    snareTrack = [5],
+    lowTomTrack = [6],
+    highTomTrack = [7],
+    closedHatTrack = [8],
+    openHatTrack = [9],
+    cymbalTrack = [10];
 
   function scheduleSound(trackArray, sound, count, time) {
     for (let i = 0; i < trackArray.length; i += 1) {
@@ -53,6 +53,36 @@ window.addEventListener('DOMContentLoaded', (event) => {
         counter,
         futureTickTime - audioContext.currentTime
       );
+      scheduleSound(
+        lowTomTrack,
+        lowTom,
+        counter,
+        futureTickTime - audioContext.currentTime
+      );
+      scheduleSound(
+        highTomTrack,
+        highTom,
+        counter,
+        futureTickTime - audioContext.currentTime
+      );
+      scheduleSound(
+        closedHatTrack,
+        closedHat,
+        counter,
+        futureTickTime - audioContext.currentTime
+      );
+      scheduleSound(
+        openHatTrack,
+        openHat,
+        counter,
+        futureTickTime - audioContext.currentTime
+      );
+      scheduleSound(
+        cymbalTrack,
+        cymbal,
+        counter,
+        futureTickTime - audioContext.currentTime
+      );
 
       playTick();
     }
@@ -70,12 +100,35 @@ window.addEventListener('DOMContentLoaded', (event) => {
     }
   }
 
+  let select = document.querySelectorAll('.select');
+
+  function selectaa() {
+    for (let i = 0; i < select.length; i++) {
+      select[i].addEventListener('mousedown', function () {
+        let selEl = document.querySelector('.flickering');
+        let visible = document.querySelector('.visible');
+        let thisTrack = document.getElementById(select[i].value);
+
+        if ((selEl, visible)) {
+          selEl.classList.remove('flickering');
+          visible.classList.remove('visible');
+        }
+        select[i].classList.add('flickering');
+        thisTrack.classList.add('visible');
+      });
+    }
+  }
+
+  selectaa();
+
   function sequenceGridToggler(drum, arr) {
     let eachDrum = document.getElementById(drum);
+
     let allPads = eachDrum.querySelectorAll('.pad_light');
     let arrayo = Array.from(allPads);
 
     for (let i = 0; i < arrayo.length; i++) {
+      arrayo[i].classList.remove('active');
       if (arr.indexOf(arrayo.indexOf(arrayo[i]) + 1) > -1) {
         arrayo[i].classList.add('active');
       }
@@ -96,7 +149,13 @@ window.addEventListener('DOMContentLoaded', (event) => {
     }
   }
 
-  sequenceGridToggler('bassDrum', bassDrumTrack);
+  sequenceGridToggler('bassDrumTrack', bassDrumTrack);
+  sequenceGridToggler('snareTrack', snareTrack);
+  sequenceGridToggler('lowTomTrack', lowTomTrack);
+  sequenceGridToggler('highTomTrack', highTomTrack);
+  sequenceGridToggler('closedHatTrack', closedHatTrack);
+  sequenceGridToggler('openHatTrack', openHatTrack);
+  sequenceGridToggler('cymbalTrack', cymbalTrack);
 
   let playButton = document.querySelector('.start_stop');
   playButton.addEventListener('click', function () {
