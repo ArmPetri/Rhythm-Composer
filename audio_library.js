@@ -1,9 +1,13 @@
 let audioContext = new AudioContext();
+let masterGain = audioContext.createGain();
+masterGain.gain.value = 0.5;
 
 function audioFileLoader(fileDirectory) {
-  let soundObj = {};
-  let playSound = undefined;
-  let getSound = new XMLHttpRequest();
+  let soundObj = {},
+    playSound = undefined,
+    getSound = new XMLHttpRequest(),
+    panner = audioContext.createStereoPanner(),
+    gainer = audioContext.createGain();
 
   soundObj.fileDirectory = fileDirectory;
   getSound.open('GET', soundObj.fileDirectory, true);
@@ -17,12 +21,31 @@ function audioFileLoader(fileDirectory) {
 
   getSound.send();
 
-  soundObj.play = function () {
+  soundObj.setPanner = function (panz) {
+    panner.pan.value = panz;
+  };
+
+  soundObj.setGainer = function (gainz) {
+    gainer.gain.value = gainz;
+  };
+
+  soundObj.play = function (time) {
     playSound = audioContext.createBufferSource();
     playSound.buffer = soundObj.soundToPlay;
-    playSound.connect(audioContext.destination);
-    playSound.start(audioContext.currentTime);
+
+    connecter(playSound);
+
+    playSound.start(
+      audioContext.currentTime + time || audioContext.currentTime
+    );
   };
+
+  function connecter(theSound) {
+    theSound.connect(panner);
+    panner.connect(gainer);
+    gainer.connect(masterGain);
+    masterGain.connect(audioContext.destination);
+  }
 
   soundObj.stop = function (time) {
     playSound.stop(audioContext.currentTime + time || audioContext.currentTime);

@@ -5,7 +5,14 @@ window.addEventListener('DOMContentLoaded', (event) => {
     secondsPerBeat = 60 / tempo,
     counterTimeValue = secondsPerBeat / 4,
     timerID = undefined,
-    isPlaying = false;
+    isPlaying = false,
+    volLevel = 5,
+    panValue = 0;
+
+  let pans = document.querySelectorAll('.pan'),
+    pansArray = Array.from(pans),
+    gains = document.querySelectorAll('.gain'),
+    gainsArray = Array.from(gains);
 
   let bassDrum = audioFileLoader('sounds/bassDrum.mp3'),
     snare = audioFileLoader('sounds/snare.mp3'),
@@ -23,6 +30,48 @@ window.addEventListener('DOMContentLoaded', (event) => {
     openHatTrack = [9],
     cymbalTrack = [10];
 
+  panAction(bassDrum);
+  panAction(snare);
+  panAction(lowTom);
+  panAction(highTom);
+  panAction(closedHat);
+  panAction(openHat);
+  panAction(cymbal);
+
+  gainAction(bassDrum);
+  gainAction(snare);
+  gainAction(lowTom);
+  gainAction(highTom);
+  gainAction(closedHat);
+  gainAction(openHat);
+  gainAction(cymbal);
+
+  function panAction(whichDrum) {
+    let result = JSON.stringify(whichDrum);
+
+    for (let i = 0; i < pansArray.length; i++) {
+      if (result.includes(pansArray[i].parentElement.parentElement.id)) {
+        pansArray[i].addEventListener('change', (e) => {
+          panValue = pansArray[i].value;
+          whichDrum.setPanner(panValue);
+        });
+      }
+    }
+  }
+
+  function gainAction(whichDrum) {
+    let result = JSON.stringify(whichDrum);
+
+    for (let i = 0; i < gainsArray.length; i++) {
+      if (result.includes(gainsArray[i].parentElement.parentElement.id)) {
+        gainsArray[i].addEventListener('change', (e) => {
+          gainValue = gainsArray[i].value;
+          whichDrum.setGainer(gainValue / 10);
+        });
+      }
+    }
+  }
+
   function scheduleSound(trackArray, sound, count, time) {
     for (let i = 0; i < trackArray.length; i += 1) {
       if (count === trackArray[i]) {
@@ -32,6 +81,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
   }
 
   function playTick() {
+    secondsPerBeat = 60 / tempo;
+    counterTimeValue = secondsPerBeat / 4;
+
     counter += 1;
     futureTickTime += counterTimeValue;
     if (counter > 16) {
@@ -156,6 +208,21 @@ window.addEventListener('DOMContentLoaded', (event) => {
   sequenceGridToggler('closedHatTrack', closedHatTrack);
   sequenceGridToggler('openHatTrack', openHatTrack);
   sequenceGridToggler('cymbalTrack', cymbalTrack);
+
+  let tempoId = document.querySelector('#tempo');
+  tempoId.addEventListener('change', (e) => {
+    tempo = tempoId.value;
+    console.log(tempo);
+    document.querySelector('#tempoScreen').innerHTML = Number(
+      `${tempo}`
+    ).toFixed(1);
+  });
+
+  let volume = document.querySelector('#volume');
+  volume.addEventListener('change', (e) => {
+    volLevel = volume.value;
+    masterGain.gain.value = volLevel / 10;
+  });
 
   let playButton = document.querySelector('.start_stop');
   playButton.addEventListener('click', function () {
