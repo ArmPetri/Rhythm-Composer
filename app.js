@@ -85,6 +85,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
     counterTimeValue = secondsPerBeat / 4;
 
     counter += 1;
+    checker(counter - 1);
     futureTickTime += counterTimeValue;
     if (counter > 16) {
       counter = 1;
@@ -172,6 +173,23 @@ window.addEventListener('DOMContentLoaded', (event) => {
   }
 
   selectaa();
+
+  function checker(counter) {
+    let visible = document.querySelector('.visible');
+    console.log(visible);
+    let containers = visible.querySelectorAll('.pad_light');
+    let arro = Array.from(containers);
+    console.log(arro);
+    if (counter)
+      for (let i = 0; i < arro.length; i++) {
+        if (counter === arro.indexOf(arro[i]) + 1) {
+          arro[i].classList.add('rolling');
+          setTimeout(function () {
+            arro[i].classList.remove('rolling');
+          }, 200);
+        }
+      }
+  }
 
   function sequenceGridToggler(drum, arr) {
     let eachDrum = document.getElementById(drum);

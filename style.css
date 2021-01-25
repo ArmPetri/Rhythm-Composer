@@ -774,3 +774,22 @@ h2 {
   flex-direction: row;
   justify-content: space-around;
 }
+
+div[class*='rolling'] {
+  animation: activio 0.1s alternate;
+}
+
+@keyframes activio {
+  0% {
+    background-color: none;
+  }
+  50% {
+    background-color: rgb(255, 114, 104);
+  }
+  75% {
+    background-color: rgba(255, 68, 55, 0.87);
+  }
+  100% {
+    background-color: rgb(255, 17, 0);
+  }
+}
