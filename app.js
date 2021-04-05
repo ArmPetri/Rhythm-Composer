@@ -9,9 +9,12 @@ window.addEventListener('DOMContentLoaded', (event) => {
     volLevel = 5,
     panValue = 0;
 
+  let panThumbs = document.querySelectorAll('.pan_thumb');
+  let gainThumbs = document.querySelectorAll('.gain_thumb');
+
   let pans = document.querySelectorAll('.pan'),
     pansArray = Array.from(pans),
-    gains = document.querySelectorAll('.gain'),
+    gains = document.querySelectorAll('.gain:not(.volume.gain)'),
     gainsArray = Array.from(gains);
 
   let bassDrum = audioFileLoader('sounds/bassDrum.mp3'),
@@ -51,12 +54,33 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
     for (let i = 0; i < pansArray.length; i++) {
       if (result.includes(pansArray[i].parentElement.parentElement.id)) {
+        pansArray[i].addEventListener('input', (e) => {
+          updatePan(i, pansArray[i].value);
+        });
+
         pansArray[i].addEventListener('change', (e) => {
           panValue = pansArray[i].value;
           whichDrum.setPanner(panValue);
+
+          updatePan(i, pansArray[i].value);
         });
       }
+      updatePan(i, pansArray[i].value);
     }
+  }
+
+  function updatePan(fillindex, val) {
+    let min = Number(pansArray[fillindex].getAttribute('min'));
+    let max = Number(pansArray[fillindex].getAttribute('max'));
+    let pc = (val / (max - min)) * 100 + 50;
+
+    setPanThumb(panThumbs[fillindex], pc);
+  }
+
+  function setPanThumb(elem, val) {
+    let size = getComputedStyle(elem).getPropertyValue('width');
+    let newx = `calc(${val}% - ${parseInt(size) / 2}px)`;
+    elem.style.left = newx;
   }
 
   function gainAction(whichDrum) {
@@ -64,12 +88,34 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
     for (let i = 0; i < gainsArray.length; i++) {
       if (result.includes(gainsArray[i].parentElement.parentElement.id)) {
+        gainsArray[i].addEventListener('input', (e) => {
+          updateSlider(i, gainsArray[i].value);
+        });
+
         gainsArray[i].addEventListener('change', (e) => {
           gainValue = gainsArray[i].value;
           whichDrum.setGainer(gainValue / 10);
+
+          updateSlider(i, gainsArray[i].value);
         });
       }
+      updateSlider(i, gainsArray[i].value);
     }
+  }
+
+  function updateSlider(fillindex, val) {
+    let min = Number(gainsArray[fillindex].getAttribute('min'));
+    let max = Number(gainsArray[fillindex].getAttribute('max'));
+    let pc = (val / (max - min)) * 100;
+
+    setThumb(gainThumbs[fillindex], pc);
+  }
+
+  function setThumb(elem, val) {
+    let size = '40px';
+
+    let newx = `calc(${val}% - ${parseInt(size) / 2 - 6.5}px)`;
+    elem.style.left = newx;
   }
 
   function scheduleSound(trackArray, sound, count, time) {
@@ -176,10 +222,8 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
   function checker(counter) {
     let visible = document.querySelector('.visible');
-    console.log(visible);
     let containers = visible.querySelectorAll('.pad_light');
     let arro = Array.from(containers);
-    console.log(arro);
     if (counter)
       for (let i = 0; i < arro.length; i++) {
         if (counter === arro.indexOf(arro[i]) + 1) {
@@ -228,19 +272,61 @@ window.addEventListener('DOMContentLoaded', (event) => {
   sequenceGridToggler('cymbalTrack', cymbalTrack);
 
   let tempoId = document.querySelector('#tempo');
+  let tempoThumb = document.querySelector('.tempo_thumb');
+
+  tempoId.addEventListener('input', (e) => {
+    updateTempo(tempoId.value);
+  });
+
   tempoId.addEventListener('change', (e) => {
     tempo = tempoId.value;
-    console.log(tempo);
     document.querySelector('#tempoScreen').innerHTML = Number(
       `${tempo}`
     ).toFixed(1);
+    updateTempo(tempo.value);
   });
 
+  function updateTempo(val) {
+    let min = Number(tempoId.getAttribute('min'));
+    let max = Number(tempoId.getAttribute('max'));
+    let pc = (val / (max - min)) * 100 - 100;
+
+    setTempoThumb(pc);
+  }
+
+  function setTempoThumb(val) {
+    let size = '40px';
+    let newx = `calc(${val}% - ${parseInt(size) / 2 - 12}px)`;
+    tempoThumb.style.left = newx;
+  }
+
   let volume = document.querySelector('#volume');
+  let sliderThumb = document.querySelector('.slider_thumb');
+
+  volume.addEventListener('input', (e) => {
+    updateVolume(volume.value);
+  });
   volume.addEventListener('change', (e) => {
     volLevel = volume.value;
     masterGain.gain.value = volLevel / 10;
+
+    updateVolume(volume.value);
   });
+
+  function updateVolume(val) {
+    let min = Number(volume.getAttribute('min'));
+    let max = Number(volume.getAttribute('max'));
+    let pc = (val / (max - min)) * 100;
+
+    setVolThumb(pc);
+  }
+
+  function setVolThumb(val) {
+    let size = '40px';
+
+    let newx = `calc(${val}% - ${parseInt(size) / 2 - 6.5}px)`;
+    sliderThumb.style.left = newx;
+  }
 
   let playButton = document.querySelector('.start_stop');
   playButton.addEventListener('click', function () {

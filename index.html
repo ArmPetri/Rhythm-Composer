@@ -7,18 +7,22 @@
     <title>Rhythm Composer</title>
   </head>
   <body>
+    <div class="low_resolution">
+      <p>
+        Your Screen Resolution is too low to correctly display this application!
+        <br />
+        Resolution must be 1024 x 540 px or higher!
+      </p>
+    </div>
     <div class="entire">
-      <!-- <img
-        src="/images/background_while_coding.svg"
-        alt="ok"
-        class="app_frame"
-      /> -->
       <img src="/images/synth_background.svg" class="app_frame" />
+
       <!-- SECTION 1  -->
       <section class="section_1">
-        <h1>Farland<br /><span>CR-08</span></h1>
+        <h1>Drumbell<br /><span>CR-07</span></h1>
         <h2>RHYTHM COMPOSER</h2>
       </section>
+
       <!-- SECTION 2 -->
       <section class="section_2">
         <div class="titles">
@@ -34,12 +38,13 @@
           <div class="hhT"><h5 class="drum_title">HI HAT</h5></div>
           <div class="cT"><h5 class="drum_title">CYMBAL</h5></div>
         </div>
+
         <!-- DRUMS  -->
         <div class="drum_wrapper">
           <div id="volume_tempo" class="flexi">
             <div class="each_drum">
               <div class="volume_background">
-                <div class="input_background">
+                <div class="input_background_volume">
                   <div class="slider_thumb"></div>
                   <input
                     type="range"
@@ -55,8 +60,8 @@
               </div>
               <div class="tempoD">
                 <div id="tempoScreen" class="digiScreen">120.0</div>
-                <div class="input_background">
-                  <div class="slider_thumb"></div>
+                <div class="input_background_tempo">
+                  <div class="tempo_thumb"></div>
                   <input
                     type="range"
                     id="tempo"
@@ -72,13 +77,14 @@
               </div>
             </div>
           </div>
+
           <!-- Four Drums  -->
           <div class="four_drums_container">
             <div class="four_drums">
               <div class="flexi">
                 <div id="bassDrum" class="each_drum">
                   <h5>GAIN</h5>
-                  <div class="input_background">
+                  <div class="input_background_gain">
                     <div class="gain_thumb"></div>
                     <input
                       class="gain"
@@ -91,7 +97,7 @@
                   </div>
 
                   <h5>PAN</h5>
-                  <div class="input_background">
+                  <div class="input_background_pan">
                     <div class="pan_thumb"></div>
                     <input
                       class="pan"
@@ -116,7 +122,7 @@
               <div class="flexi">
                 <div id="snare" class="each_drum">
                   <h5>GAIN</h5>
-                  <div class="input_background">
+                  <div class="input_background_gain">
                     <div class="gain_thumb"></div>
                     <input
                       class="gain"
@@ -129,7 +135,7 @@
                   </div>
 
                   <h5>PAN</h5>
-                  <div class="input_background">
+                  <div class="input_background_pan">
                     <div class="pan_thumb"></div>
                     <input
                       class="pan"
@@ -150,7 +156,7 @@
               <div class="flexi">
                 <div id="lowTom" class="each_drum">
                   <h5>GAIN</h5>
-                  <div class="input_background">
+                  <div class="input_background_gain">
                     <div class="gain_thumb"></div>
                     <input
                       class="gain"
@@ -163,7 +169,7 @@
                   </div>
 
                   <h5>PAN</h5>
-                  <div class="input_background">
+                  <div class="input_background_pan">
                     <div class="pan_thumb"></div>
                     <input
                       class="pan"
@@ -184,7 +190,7 @@
               <div class="flexi">
                 <div id="highTom" class="each_drum">
                   <h5>GAIN</h5>
-                  <div class="input_background">
+                  <div class="input_background_gain">
                     <div class="gain_thumb"></div>
                     <input
                       class="gain"
@@ -197,7 +203,7 @@
                   </div>
 
                   <h5>PAN</h5>
-                  <div class="input_background">
+                  <div class="input_background_pan">
                     <div class="pan_thumb"></div>
                     <input
                       class="pan"
@@ -217,6 +223,7 @@
               </div>
             </div>
           </div>
+
           <!-- Cymbals  -->
           <div class="hi_hat flexi">
             <div class="hh_titles">
@@ -226,7 +233,7 @@
             <div class="close_open">
               <div id="closedHat" class="each_drum">
                 <h5>GAIN</h5>
-                <div class="input_background">
+                <div class="input_background_gain">
                   <div class="gain_thumb"></div>
                   <input
                     class="gain"
@@ -239,7 +246,7 @@
                 </div>
 
                 <h5>PAN</h5>
-                <div class="input_background">
+                <div class="input_background_pan">
                   <div class="pan_thumb"></div>
                   <input
                     class="pan"
@@ -259,7 +266,7 @@
               </div>
               <div id="openHat" class="each_drum">
                 <h5>GAIN</h5>
-                <div class="input_background">
+                <div class="input_background_gain">
                   <div class="gain_thumb"></div>
                   <input
                     class="gain"
@@ -272,7 +279,7 @@
                 </div>
 
                 <h5>PAN</h5>
-                <div class="input_background">
+                <div class="input_background_pan">
                   <div class="pan_thumb"></div>
                   <input
                     class="pan"
@@ -291,14 +298,14 @@
               </div>
             </div>
           </div>
-          <!-- Crash -->
+          <!-- CHRASH -->
           <div class="cymbal flexi">
             <div class="crash_title">
               <h5>CRASH</h5>
             </div>
             <div id="cymbal" class="each_drum">
               <h5>GAIN</h5>
-              <div class="input_background">
+              <div class="input_background_gain">
                 <div class="gain_thumb"></div>
                 <input
                   class="gain"
@@ -311,7 +318,7 @@
               </div>
 
               <h5>PAN</h5>
-              <div class="input_background">
+              <div class="input_background_pan">
                 <div class="pan_thumb"></div>
                 <input
                   class="pan"
