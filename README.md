@@ -3,6 +3,7 @@ Vanilla JS &amp; Web Audio API Step Sequencer / Drum Machine / Rhythm Composer
 
 Live Site:
 https://rhythm-composer.netlify.app/ 
+!!! Currently non-responsive
 
 Drum Machine design by KK Lin - https://kklin.me/
 
